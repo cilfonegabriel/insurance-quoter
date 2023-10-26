@@ -1,8 +1,11 @@
-
+import { QuoterProvider } from "./context/QuoterProvider"
+import AppInsurance from "./components/AppInsurance"
 function App() {
 
   return (
-   <h1>app</h1>
+    <QuoterProvider >
+        <AppInsurance />
+    </QuoterProvider>
   )
 }
 
