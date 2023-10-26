@@ -1,8 +1,8 @@
-
+import AppInsurance from "./components/AppInsurance"
 function App() {
 
   return (
-   <h1>app</h1>
+    <AppInsurance />
   )
 }
 
