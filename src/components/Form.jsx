@@ -4,6 +4,8 @@ import useQuoter from "../hooks/useQuoter"
 
 function Form() {
 
+    const { datos, handleChangeData } = useQuoter()
+
   return (
     <>
         <form action="">
@@ -14,6 +16,9 @@ function Form() {
                 <select 
                     name="brand"
                     className='w-full p-3 bg-white border border-gray-200'
+                    onChange={ e => handleChangeData(e) }
+                    value={datos.brand}
+
                 >
                     <option value="">-- Select Brand --</option>
                     {BRANDS.map(brand => (
@@ -33,8 +38,10 @@ function Form() {
                     Year
                 </label>
                 <select 
-                    name="brand"
+                    name="year"
                     className='w-full p-3 bg-white border border-gray-200'
+                    onChange={ e => handleChangeData(e)}
+                    value={datos.year}
                 >
                     <option value="">-- Select Year --</option>
                     {YEARS.map(year => (
@@ -63,6 +70,7 @@ function Form() {
                                 type="radio"
                                 name="plan"
                                 value={plan.id}    
+                                onChange={ e => handleChangeData(e)}
                             />
                         </Fragment>
                     ))}
