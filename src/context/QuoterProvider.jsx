@@ -10,19 +10,22 @@ const QuoterProvider = ({children}) => {
         plan: ''
     })
 
+    const [error, setError] = useState('')
+
     const handleChangeData = e => {
         setDatos({
             ...datos,
             [e.target.name] : e.target.value
         })
-        
     }
 
     return(
         <QuoterContext.Provider
             value={{
                 datos,
-                handleChangeData
+                handleChangeData,
+                setError,
+                error
             }}
         >
             {children}

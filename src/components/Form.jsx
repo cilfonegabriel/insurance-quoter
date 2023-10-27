@@ -1,14 +1,30 @@
 import { Fragment } from "react"
 import { BRANDS, YEARS, PLANS } from "../constants"
 import useQuoter from "../hooks/useQuoter"
+import Error from "./Error"
 
-function Form() {
+const Form = () => {
 
-    const { datos, handleChangeData } = useQuoter()
+    const { datos, handleChangeData, setError, error } = useQuoter()
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if (Object.values(datos).includes('')) {
+            setError('All ways are obligator')
+
+            return
+        }
+
+        setError('')
+    }
 
   return (
     <>
-        <form action="">
+        {error && <Error />}
+        <form
+          onSubmit={handleSubmit}  
+        >
             <div className='my-5'>
                 <label htmlFor="" className='block mb-3 font-bold text-gray-400 uppercase'>
                     Brand
