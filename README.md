@@ -2,9 +2,9 @@
   
   <h3><b>Insurance Quoter React App</b></h3>
 
+  <img src="CapturaNormal2.png" alt="logo" height="auto" />
   <img src="CapturaNormal1.png" alt="logo" height="auto" />
 
-  <img src="CapturaNormal2.png" alt="logo" height="auto" />
 
   <br/>
 
