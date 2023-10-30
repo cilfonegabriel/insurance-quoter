@@ -7,6 +7,8 @@ const Result = () => {
     const { brand, plan, year } = datos
 
     const [ nameBrand ] = BRANDS.filter(b => b.id === Number(brand))
+    const [ namePlan ] = PLANS.filter(p => p.id === Number(plan))
+
 
     if (result === 0) return null
 
@@ -19,6 +21,21 @@ const Result = () => {
             <p className="my-2">
                 <span className="font-bold">Brand: </span>
                 {nameBrand.name}
+            </p>
+
+            <p className="my-2">
+                <span className="font-bold">Plan: </span>
+                {namePlan.name}
+            </p>
+
+            <p className="my-2">
+                <span className="font-bold">Year of the vehicle: </span>
+                {year}
+            </p>
+
+            <p className="my-2 text-2xl">
+                <span className="font-bold">Total quote: </span>
+                {result}
             </p>
         </div>
     )
