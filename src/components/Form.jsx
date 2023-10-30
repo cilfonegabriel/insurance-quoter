@@ -5,7 +5,7 @@ import Error from "./Error"
 
 const Form = () => {
 
-    const { datos, handleChangeData, setError, error } = useQuoter()
+    const { datos, handleChangeData, setError, error, quoterInsurance } = useQuoter()
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -17,6 +17,8 @@ const Form = () => {
         }
 
         setError('')
+
+        quoterInsurance()
     }
 
   return (
