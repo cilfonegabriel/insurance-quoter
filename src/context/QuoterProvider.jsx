@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import { getDifferenceYear, calculateBrand, calculatePlan, formatMoney } from "../helpers";
 
 const QuoterContext = createContext()
 
@@ -11,6 +12,8 @@ const QuoterProvider = ({children}) => {
     })
 
     const [error, setError] = useState('')
+    const [result, setResult] = useState(0)
+    const [loading, setLoading] = useState(false)
 
     const handleChangeData = e => {
         setDatos({
@@ -19,13 +22,47 @@ const QuoterProvider = ({children}) => {
         })
     }
 
+    const quoterInsurance = () => {
+        // Base
+        let result = 2000
+
+        //Get the difference of years
+        const difference = getDifferenceYear(datos.year)
+        
+        //Subtract 3% for each year
+        result -= ((difference * 3) * result) / 100
+        
+        //European 30%
+        //American 15%
+        //Asian 5%
+        result *= calculateBrand(datos.brand)
+
+        //Basic 20%
+        //Complete 50%
+        result *= calculatePlan(datos.plan)
+        
+        result = formatMoney(result)
+
+        setLoading(true)
+
+        setTimeout(() => {
+            setResult(result)
+            setLoading(false)
+        }, 3000);
+
+        
+    }
+
     return(
         <QuoterContext.Provider
             value={{
                 datos,
                 handleChangeData,
                 setError,
-                error
+                error,
+                quoterInsurance, 
+                result,
+                loading
             }}
         >
             {children}
