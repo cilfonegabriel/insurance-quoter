@@ -52,7 +52,8 @@ const QuoterProvider = ({children}) => {
                 handleChangeData,
                 setError,
                 error,
-                quoterInsurance
+                quoterInsurance, 
+                result
             }}
         >
             {children}
