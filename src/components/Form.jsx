@@ -1,12 +1,30 @@
 import { Fragment } from "react"
 import { BRANDS, YEARS, PLANS } from "../constants"
 import useQuoter from "../hooks/useQuoter"
+import Error from "./Error"
 
-function Form() {
+const Form = () => {
+
+    const { datos, handleChangeData, setError, error } = useQuoter()
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        if (Object.values(datos).includes('')) {
+            setError('All ways are obligator')
+
+            return
+        }
+
+        setError('')
+    }
 
   return (
     <>
-        <form action="">
+        {error && <Error />}
+        <form
+          onSubmit={handleSubmit}  
+        >
             <div className='my-5'>
                 <label htmlFor="" className='block mb-3 font-bold text-gray-400 uppercase'>
                     Brand
@@ -14,6 +32,9 @@ function Form() {
                 <select 
                     name="brand"
                     className='w-full p-3 bg-white border border-gray-200'
+                    onChange={ e => handleChangeData(e) }
+                    value={datos.brand}
+
                 >
                     <option value="">-- Select Brand --</option>
                     {BRANDS.map(brand => (
@@ -33,8 +54,10 @@ function Form() {
                     Year
                 </label>
                 <select 
-                    name="brand"
+                    name="year"
                     className='w-full p-3 bg-white border border-gray-200'
+                    onChange={ e => handleChangeData(e)}
+                    value={datos.year}
                 >
                     <option value="">-- Select Year --</option>
                     {YEARS.map(year => (
@@ -63,6 +86,7 @@ function Form() {
                                 type="radio"
                                 name="plan"
                                 value={plan.id}    
+                                onChange={ e => handleChangeData(e)}
                             />
                         </Fragment>
                     ))}
